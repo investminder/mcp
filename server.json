@@ -5,7 +5,7 @@
   "description": "Investment research, stock & ETF screening, strategy backtesting and portfolio tracking.",
   "websiteUrl": "https://www.investminder.com",
   "repository": {
-    "url": "https://github.com/investminder/investminder-mcp",
+    "url": "https://github.com/investminder/mcp",
     "source": "github"
   },
   "version": "1.0.0",

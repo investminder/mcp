@@ -1,6 +1,6 @@
 # Investminder MCP tools reference
 
-The [Investminder](https://www.investminder.com) MCP server exposes 21 tools. Your assistant picks them automatically; this page helps you know what to ask for and what to expect.
+The [Investminder](https://www.investminder.com) MCP server exposes the tools below. Your assistant picks them automatically; this page helps you know what to ask for and what to expect.
 
 Back to the [README](../README.md).
 
@@ -10,14 +10,14 @@ Back to the [README](../README.md).
 - [Backtests](#backtests)
 - [Portfolios](#portfolios)
 
-All tools that return text accept a `language` of `en`, `fr`, `es` or `de`. List tools return pages with `items`, `total`, `offset`, `size` (default 10, max 50) and `hasMore`.
+All tools that return text accept a `language` of `en`, `fr`, `es` or `de`. List tools return pages with `items`, `total`, `offset`, `size` (default 10, max 50) and `hasMore`, except `listBacktests`, which uses a cursor (see below).
 
 ---
 
 ## Getting started
 
 ### `startOnboarding`
-Guided introduction to Investminder: presents the product and walks a new user through the first steps, adapted to what they have already done. Optional, works without an account.
+Guided introduction to Investminder: presents the product and walks a new user through the first steps, adapted to what they have already done. Optional, works before you have an Investminder profile.
 
 > *"What can Investminder do for me?"*
 
@@ -38,8 +38,8 @@ Find stocks, ETFs and forex pairs by **name, ticker or ISIN**. Add `fields: ["DE
 ### `screenSecurities`
 Select securities on structured criteria combined with AND. Available fields include:
 
-- **Classification**: asset class, category, country, location, sector, industry, stock index (S&P 500, Nasdaq-100, Russell 2000, MSCI World, STOXX Europe 600, Euro Stoxx 50, CAC 40, DAX, FTSE 100, IBEX 35, AEX, SMI, Nikkei 225), currency, provider
-- **Funds**: regulatory framework (UCITS, PEA), distribution policy and frequency, net expense ratio, total assets, holdings count
+- **Classification**: asset class, category, country, location, sector, industry, stock index (S&P 500 🇺🇸, Nasdaq-100 🇺🇸, Russell 2000 🇺🇸, MSCI World 🌍, STOXX Europe 600 🇪🇺, Euro Stoxx 50 🇪🇺, CAC 40 🇫🇷, DAX 🇩🇪, FTSE 100 🇬🇧, IBEX 35 🇪🇸, AEX 🇳🇱, SMI 🇨🇭, Nikkei 225 🇯🇵), currency, provider
+- **Funds**: regulatory framework (UCITS 🇪🇺, PEA 🇫🇷), distribution policy and frequency, net expense ratio, total assets, holdings count
 - **Valuation**: P/E, PEG, P/B, market cap, dividend yield, payout ratio
 - **Quality**: ROE, ROIC, gross / operating / net margin, current ratio, debt/equity
 - **Growth**: annual growth of revenue, net profit, EPS, free cash flow, share count
@@ -113,7 +113,9 @@ Runs a backtest of a strategy draft over a date range, with:
 Backtests are asynchronous: the tool returns a `PENDING` backtest.
 
 ### `listBacktests`
-Polls a backtest by `backtestId` until `COMPLETED` or `FAILED`, and returns its performance metrics and annual returns, for the strategy and its benchmark. Ask for `HOLDINGS`, `TRANSACTIONS` or `DIVIDENDS` only when you need the daily series.
+Polls a backtest by `backtestId` until `COMPLETED` or `FAILED`, and returns its performance metrics for the strategy and its benchmark. Ask for `ANNUAL_RETURNS` for the year-by-year returns, and for `HOLDINGS`, `TRANSACTIONS` or `DIVIDENDS` only when you need the daily series. With `strategyId`, it lists the backtests of every version of the strategy, newest first.
+
+Pages are cursor-based: the response carries `items`, `total`, `size` (default 10, max 50), `hasMore` and `nextCursor`. Pass `nextCursor` as `after` to read the next page.
 
 > *"Backtest my strategy from 2010 with $10,000 and $500 a month, then compare its max drawdown with SPY."*
 
@@ -134,6 +136,11 @@ All your portfolios, with positions and cash balances on request.
 Transaction history, newest first, filterable by type and date.
 
 ### `listInstitutions` / `connectPortfolio`
-List supported brokers and banks, then get a **hosted authorization link** to connect one. You authorize directly with the provider; the portfolio is then created and synchronized automatically. Never type banking credentials in a chat.
+List supported brokers and banks, then get a **hosted authorization link** to connect one. You authorize directly on the provider's own page; the portfolio is then created and synchronized automatically.
+
+**Your banking information stays out of Investminder's reach.**
+- **Investminder never sees or stores your banking credentials or bank details.** The connection goes through two licensed open banking partners, [Powens](https://www.powens.com) 🇪🇺 and [SnapTrade](https://snaptrade.com) 🇺🇸, and you authenticate on their hosted page only.
+- **Access is read-only.** Investminder can read your positions, cash and transactions to keep your portfolio up to date. It cannot move money or place orders.
+- **Never send banking information in a chat, and never send it to the Investminder team.** Neither the assistant nor anyone at Investminder will ever ask you for a password, a code, a card number or an IBAN. If someone does, do not answer.
 
 Learn more: [The Portfolio: the central element of your investment management](https://help.investminder.com/en/how-to-use/the-portfolio-the-central-element-of-your-investment-management-13844s4/).

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
+  "name": "com.investminder/investminder",
+  "title": "Investminder",
+  "description": "Investment research, stock & ETF screening, strategy backtesting and portfolio tracking.",
+  "websiteUrl": "https://www.investminder.com",
+  "repository": {
+    "url": "https://github.com/investminder/mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.investminder.com/mcp"
+    }
+  ]
+}

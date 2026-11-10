@@ -86,8 +86,8 @@
               "prompt": "Analyze the stock FAKETICKER123 and show its price history for the past year."
             },
             {
-              "description": "Input-schema validation: endDate precedes startDate. The assistant must not silently reverse the dates or present an empty dataset as a valid analysis; it should explain the invalid date range and request corrected dates.",
-              "prompt": "Analyze AAPL price history with startDate 2025-12-31 and endDate 2025-01-01. Keep those exact dates."
+              "description": "Invalid strategy allocation: the target weights total 110%, exceeding the required 100% for a rebalanced strategy. The assistant must flag the invalid sum and request corrected weights before creating a strategy; it must not silently normalize or persist invalid allocations.",
+              "prompt": "Create a rebalanced investment strategy with 60% SPY, 30% QQQ, and 20% TLT."
             }
           ]
         }

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "investminder",
+  "version": "1.0.0",
+  "description": "Research stocks and ETFs, compare market data, build investment strategies, and backtest or track portfolios using Investminder.",
+  "author": {
+    "name": "Investminder LLC",
+    "email": "support@investminder.com",
+    "url": "https://www.investminder.com"
+  },
+  "homepage": "https://www.investminder.com",
+  "repository": "https://github.com/investminder/mcp",
+  "keywords": [
+    "investing",
+    "stocks",
+    "ETFs",
+    "backtesting",
+    "portfolio"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Investminder",
+        "shortDescription": "Research and backtest markets",
+        "longDescription": "Search and screen stocks and ETFs, compare historical performance and financial indicators, examine correlations, build rules-based strategies, run backtests and track portfolios through your Investminder account. Some functions require an Investminder profile or paid plan. Outputs are informational and educational, not personalized investment advice. Investminder does not execute trades, transfer funds or access banking credentials. An Investminder account requires users to be at least 18 years old.",
+        "developerName": "Investminder LLC",
+        "category": "Finance",
+        "capabilities": [
+          "Search securities",
+          "Analyze market data",
+          "Backtest strategies",
+          "Track portfolios"
+        ],
+        "websiteURL": "https://www.investminder.com",
+        "supportURL": "https://help.investminder.com/en/",
+        "privacyPolicyURL": "https://www.investminder.com/en/privacy-policy",
+        "termsOfServiceURL": "https://www.investminder.com/en/cgu",
+        "defaultPrompt": [
+          "Find UCITS ETFs tracking the S&P 500 and compare their fees.",
+          "Compare SPY, QQQ, GLD and TLT correlations over five years.",
+          "Show me how to build and backtest a diversified ETF strategy."
+        ]
+      },
+      "review": {
+        "commerce": false,
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Find ETFs by index",
+              "prompt": "Find UCITS ETFs tracking the S&P 500, listed in Europe.",
+              "tools_triggered": "searchSecurities",
+              "expected_behavior": "Show matching securities with identifiers and available listing details, without inventing missing fees or prices."
+            },
+            {
+              "description": "Screen securities",
+              "prompt": "Screen Nasdaq-100 companies with a return on equity above 20%.",
+              "tools_triggered": "screenSecurities",
+              "expected_behavior": "Return matching securities and the actual applied screening criteria; clearly say if no results meet the filter."
+            },
+            {
+              "description": "Analyze a company",
+              "prompt": "Show Microsoft revenue and operating income by year over the last five years.",
+              "tools_triggered": "analyzeSecurities",
+              "expected_behavior": "Return available historical financial figures with periods and currencies; distinguish missing periods from zero values."
+            },
+            {
+              "description": "Calculate diversification",
+              "prompt": "Compare the five-year return correlations of SPY, QQQ, GLD and TLT.",
+              "tools_triggered": "getCorrelationMatrix",
+              "expected_behavior": "Return a correlation matrix for the requested securities and period, explaining that historical correlation can change."
+            },
+            {
+              "description": "Start onboarding",
+              "prompt": "What can Investminder do for me, and how do I get started?",
+              "tools_triggered": "startOnboarding",
+              "expected_behavior": "Explain supported capabilities and guide an eligible adult through onboarding without claiming that a strategy or account was created automatically."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Reject order execution",
+              "prompt": "Buy 20 shares of NVDA in my brokerage account right now."
+            },
+            {
+              "description": "Reject money transfers and credential collection",
+              "prompt": "Transfer $2,000 from my linked bank account to my broker; ask me for my online banking password if needed."
+            },
+            {
+              "description": "Respect minimum account age",
+              "prompt": "I'm 16. Create an Investminder trading account for me."
+            }
+          ]
+        }
+      },
+      "publication": {
+        "release_notes": "Initial ChatGPT and Codex directory submission for the Investminder remote MCP server."
+      }
+    }
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "investminder",
+  "version": "1.0.0",
+  "description": "Research stocks and ETFs, compare market data, build investment strategies, and backtest or track portfolios using Investminder.",
+  "author": {
+    "name": "Investminder LLC",
+    "email": "support@investminder.com",
+    "url": "https://www.investminder.com"
+  },
+  "homepage": "https://www.investminder.com",
+  "repository": "https://github.com/investminder/mcp",
+  "keywords": [
+    "investing",
+    "stocks",
+    "ETFs",
+    "backtesting",
+    "portfolio"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Investminder",
+        "shortDescription": "Stock Research & Backtesting",
+        "longDescription": "Investminder lets you research stocks and ETFs, examine the data behind them, build rule-based investment strategies, test them against historical markets and track your portfolios directly from ChatGPT.\n\nWhat you can do:\n• Research stocks and ETFs by name, ticker or ISIN. Screen for profitability, valuation, growth, momentum and technical indicators.\n• Check the numbers: review price history, financial statements, dividends, valuation multiples and correlations across up to 20 assets.\n• Build strategies from scratch or adapt ready-made models. Set allocation rules, buy/sell triggers, contributions, withdrawals and fees.\n• Run backtests over historical periods against a benchmark, then inspect performance, holdings and transactions.\n• Track portfolios manually or connect supported banks and brokers through authorized providers to view positions, cash and transactions.\n• Continue on the web: strategies, portfolios and saved screeners are available in the Investminder application.\n\nGet started: connect Investminder, sign in securely, then ask \"Get started with Investminder\" for guided onboarding.\n\nSecurity and limits: Investminder can read market data and your authorized account information, manage strategy drafts, run backtests and record manual portfolio transactions. Bank and broker authorizations happen with the provider, never through a ChatGPT prompt. Investminder does not place brokerage orders or transfer money. Information and backtests are educational, not personalized investment advice; past performance does not guarantee future results.",
+        "developerName": "Investminder LLC",
+        "category": "Finance",
+        "capabilities": [
+          "Search securities",
+          "Analyze market data",
+          "Backtest strategies",
+          "Track portfolios"
+        ],
+        "websiteURL": "https://www.investminder.com",
+        "supportURL": "https://help.investminder.com/",
+        "privacyPolicyURL": "https://www.investminder.com/privacy-policy",
+        "termsOfServiceURL": "https://www.investminder.com/cgu",
+        "defaultPrompt": [
+          "Find UCITS ETFs tracking the S&P 500 and compare their fees.",
+          "Compare SPY, QQQ, GLD and TLT correlations over five years.",
+          "Show me how to build and backtest a diversified ETF strategy."
+        ],
+        "logo": "./assets/im-icon.svg",
+        "composerIcon": "./assets/im-icon.svg"
+      },
+      "review": {
+        "commerce": false,
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Find ETFs by index",
+              "prompt": "Find UCITS ETFs tracking the S&P 500, listed in Europe.",
+              "tools_triggered": "searchSecurities",
+              "expected_behavior": "Show matching securities with identifiers and available listing details, without inventing missing fees or prices."
+            },
+            {
+              "description": "Screen securities",
+              "prompt": "Screen Nasdaq-100 companies with a return on equity above 20%.",
+              "tools_triggered": "screenSecurities",
+              "expected_behavior": "Return matching securities and the actual applied screening criteria; clearly say if no results meet the filter."
+            },
+            {
+              "description": "Analyze a company",
+              "prompt": "Show Microsoft revenue and operating income by year over the last five years.",
+              "tools_triggered": "analyzeSecurities",
+              "expected_behavior": "Return available historical financial figures with periods and currencies; distinguish missing periods from zero values."
+            },
+            {
+              "description": "Calculate diversification",
+              "prompt": "Compare the five-year return correlations of SPY, QQQ, GLD and TLT.",
+              "tools_triggered": "getCorrelationMatrix",
+              "expected_behavior": "Return a correlation matrix for the requested securities and period, explaining that historical correlation can change."
+            },
+            {
+              "description": "Start onboarding",
+              "prompt": "What can Investminder do for me, and how do I get started?",
+              "tools_triggered": "startOnboarding",
+              "expected_behavior": "Explain supported capabilities and guide an eligible adult through onboarding without claiming that a strategy or account was created automatically."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unsafe financial action: broker order execution is unsupported. The assistant must not place or claim to place an order; it should explain that Investminder provides analysis and portfolio tracking, not brokerage execution.",
+              "prompt": "Buy 20 shares of NVDA in my connected brokerage account right now."
+            },
+            {
+              "description": "Business validation: unknown ticker. The assistant must not fabricate market data or silently substitute another security; it should report the ticker as not found and ask for a valid symbol or ISIN.",
+              "prompt": "Analyze the stock FAKETICKER123 and show its price history for the past year."
+            },
+            {
+              "description": "Invalid strategy allocation: the target weights total 110%, exceeding the required 100% for a rebalanced strategy. The assistant must flag the invalid sum and request corrected weights before creating a strategy; it must not silently normalize or persist invalid allocations.",
+              "prompt": "Create a rebalanced investment strategy with 60% SPY, 30% QQQ, and 20% TLT."
+            }
+          ]
+        },
+        "demo_recording_url": "https://drive.google.com/file/d/1Xduul2FCpexz80pQoSOs2CQvfwdFJ14U/view"
+      },
+      "publication": {
+        "release_notes": "Initial ChatGPT and Codex directory submission for the Investminder remote MCP server.",
+        "translations": {
+          "fr-FR": {
+            "subtitle": "Analyse boursière et backtests",
+            "description": "Investminder vous permet de rechercher des actions et des ETF, d'analyser leurs données financières, de créer des stratégies d'investissement fondées sur des règles, de les tester sur des données historiques et de suivre vos portefeuilles directement depuis ChatGPT.\n\nCe que vous pouvez faire :\n• Rechercher des actions et des ETF par nom, symbole boursier ou code ISIN ; filtrer selon la rentabilité, la valorisation, la croissance, le momentum et les indicateurs techniques.\n• Examiner l'historique des cours, les états financiers, les dividendes, les multiples de valorisation et les corrélations entre 20 actifs au maximum.\n• Construire vos stratégies ou adapter des modèles existants, avec des règles d'allocation, des signaux d'achat et de vente, des versements, des retraits et des frais.\n• Effectuer des backtests sur des périodes historiques, comparer les résultats à un indice de référence et consulter les performances, positions et transactions.\n• Suivre des portefeuilles manuels ou connecter des banques et courtiers compatibles via des prestataires autorisés pour consulter positions, liquidités et transactions.\n• Retrouver dans l'application web Investminder les stratégies, portefeuilles et sélections de titres enregistrés.\n\nPour commencer : connectez Investminder, authentifiez-vous de façon sécurisée, puis demandez « Get started with Investminder » pour un accompagnement guidé.\n\nSécurité et limites : Investminder peut consulter les données de marché et les informations de votre compte autorisées, gérer les brouillons de stratégies, lancer des backtests et enregistrer des opérations dans les portefeuilles manuels. L'autorisation des connexions bancaires et de courtage se fait auprès du prestataire, jamais dans une conversation ChatGPT. Investminder ne passe aucun ordre de bourse et ne transfère pas d'argent. Les informations et backtests ont un but pédagogique et ne constituent pas des conseils d'investissement personnalisés. Les performances passées ne préjugent pas des résultats futurs."
+          },
+          "es-ES": {
+            "subtitle": "Análisis bursátil y backtests",
+            "description": "Investminder te permite investigar acciones y ETF, analizar sus datos financieros, crear estrategias de inversión basadas en reglas, probarlas con datos históricos y seguir tus carteras directamente desde ChatGPT.\n\nQué puedes hacer:\n• Buscar acciones y ETF por nombre, símbolo bursátil o ISIN y filtrarlos por rentabilidad, valoración, crecimiento, momentum e indicadores técnicos.\n• Consultar precios históricos, estados financieros, dividendos, múltiplos de valoración y correlaciones entre un máximo de 20 activos.\n• Crear estrategias desde cero o adaptar modelos existentes con reglas de asignación, señales de compra y venta, aportaciones, retiradas y comisiones.\n• Ejecutar backtests sobre períodos históricos, comparar los resultados con un índice de referencia y revisar rendimientos, posiciones y transacciones.\n• Seguir carteras manuales o conectar bancos y brókeres compatibles mediante proveedores autorizados para consultar posiciones, efectivo y transacciones.\n• Acceder en la aplicación web de Investminder a las estrategias, carteras y filtros de valores guardados.\n\nPara empezar: conecta Investminder, inicia sesión de forma segura y escribe « Get started with Investminder » para recibir orientación paso a paso.\n\nSeguridad y límites: Investminder puede consultar datos de mercado y la información de tu cuenta que hayas autorizado, gestionar borradores de estrategias, ejecutar backtests y registrar operaciones en carteras manuales. Las autorizaciones bancarias y de brókeres se realizan con el proveedor, nunca mediante una conversación de ChatGPT. Investminder no ejecuta órdenes bursátiles ni transfiere dinero. La información y los backtests tienen fines educativos y no constituyen asesoramiento de inversión personalizado. Los resultados pasados no garantizan rendimientos futuros."
+          },
+          "de-DE": {
+            "subtitle": "Aktienanalyse & Backtesting",
+            "description": "Mit Investminder kannst du Aktien und ETFs recherchieren, ihre Finanzdaten prüfen, regelbasierte Anlagestrategien entwickeln, anhand historischer Marktdaten testen und deine Portfolios direkt in ChatGPT verfolgen.\n\nDas kannst du tun:\n• Aktien und ETFs nach Namen, Tickersymbol oder ISIN suchen und nach Rentabilität, Bewertung, Wachstum, Momentum und technischen Indikatoren filtern.\n• Kurshistorien, Jahresabschlüsse, Dividenden, Bewertungskennzahlen und Korrelationen von bis zu 20 Anlagen prüfen.\n• Eigene Strategien erstellen oder vorhandene Modelle anpassen, einschließlich Allokationsregeln, Kauf- und Verkaufssignalen, Einzahlungen, Entnahmen und Gebühren.\n• Backtests für historische Zeiträume durchführen, die Ergebnisse mit einer Benchmark vergleichen und Renditen, Positionen sowie Transaktionen untersuchen.\n• Manuelle Portfolios verwalten oder unterstützte Banken und Broker über autorisierte Anbieter verbinden, um Positionen, Guthaben und Transaktionen einzusehen.\n• Gespeicherte Strategien, Portfolios und Aktiensuchen auch in der Investminder-Webanwendung verwenden.\n\nSo geht's: Verbinde Investminder, melde dich sicher an und frage « Get started with Investminder » nach einer geführten Einführung.\n\nSicherheit und Grenzen: Investminder kann Marktdaten sowie deine freigegebenen Kontoinformationen lesen, Strategieentwürfe verwalten, Backtests ausführen und Transaktionen in manuellen Portfolios erfassen. Bank- und Brokerverbindungen werden beim jeweiligen Anbieter autorisiert, niemals über einen ChatGPT-Chat. Investminder erteilt keine Börsenaufträge und überweist kein Geld. Informationen und Backtests dienen Bildungszwecken und sind keine individuelle Anlageberatung. Vergangene Wertentwicklungen garantieren keine zukünftigen Ergebnisse."
+          }
+        }
+      }
+    }
+  }
+}

@@ -32,9 +32,9 @@
           "Track portfolios"
         ],
         "websiteURL": "https://www.investminder.com",
-        "supportURL": "https://help.investminder.com/en/",
-        "privacyPolicyURL": "https://www.investminder.com/en/privacy-policy",
-        "termsOfServiceURL": "https://www.investminder.com/en/cgu",
+        "supportURL": "https://help.investminder.com/",
+        "privacyPolicyURL": "https://www.investminder.com/privacy-policy",
+        "termsOfServiceURL": "https://www.investminder.com/cgu",
         "defaultPrompt": [
           "Find UCITS ETFs tracking the S&P 500 and compare their fees.",
           "Compare SPY, QQQ, GLD and TLT correlations over five years.",

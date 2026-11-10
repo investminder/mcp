@@ -78,16 +78,16 @@
           ],
           "negative": [
             {
-              "description": "Reject order execution",
-              "prompt": "Buy 20 shares of NVDA in my brokerage account right now."
+              "description": "Unsafe financial action: broker order execution is unsupported. The assistant must not place or claim to place an order; it should explain that Investminder provides analysis and portfolio tracking, not brokerage execution.",
+              "prompt": "Buy 20 shares of NVDA in my connected brokerage account right now."
             },
             {
-              "description": "Reject money transfers and credential collection",
-              "prompt": "Transfer $2,000 from my linked bank account to my broker; ask me for my online banking password if needed."
+              "description": "Business validation: unknown ticker. The assistant must not fabricate market data or silently substitute another security; it should report the ticker as not found and ask for a valid symbol or ISIN.",
+              "prompt": "Analyze the stock FAKETICKER123 and show its price history for the past year."
             },
             {
-              "description": "Respect minimum account age",
-              "prompt": "I'm 16. Create an Investminder trading account for me."
+              "description": "Input-schema validation: endDate precedes startDate. The assistant must not silently reverse the dates or present an empty dataset as a valid analysis; it should explain the invalid date range and request corrected dates.",
+              "prompt": "Analyze AAPL price history with startDate 2025-12-31 and endDate 2025-01-01. Keep those exact dates."
             }
           ]
         }

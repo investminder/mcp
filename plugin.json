@@ -39,7 +39,9 @@
           "Find UCITS ETFs tracking the S&P 500 and compare their fees.",
           "Compare SPY, QQQ, GLD and TLT correlations over five years.",
           "Show me how to build and backtest a diversified ETF strategy."
-        ]
+        ],
+        "logo": "./assets/im-icon.svg",
+        "composerIcon": "./assets/im-icon.svg"
       },
       "review": {
         "commerce": false,
@@ -90,7 +92,8 @@
               "prompt": "Create a rebalanced investment strategy with 60% SPY, 30% QQQ, and 20% TLT."
             }
           ]
-        }
+        },
+        "demo_recording_url": "https://drive.google.com/file/d/1Xduul2FCpexz80pQoSOs2CQvfwdFJ14U/view?usp=sharing"
       },
       "publication": {
         "release_notes": "Initial ChatGPT and Codex directory submission for the Investminder remote MCP server."

@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "investminder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Research stocks and ETFs, compare market data, build investment strategies, and backtest or track portfolios using Investminder.",
   "author": {
     "name": "Investminder LLC",
@@ -36,9 +36,9 @@
         "privacyPolicyURL": "https://www.investminder.com/privacy-policy",
         "termsOfServiceURL": "https://www.investminder.com/cgu",
         "defaultPrompt": [
-          "Find UCITS ETFs tracking the S&P 500 and compare their fees.",
-          "Compare SPY, QQQ, GLD and TLT correlations over five years.",
-          "Show me how to build and backtest a diversified ETF strategy."
+          "Get started with Investminder",
+          "Help me find stocks and ETFs worth researching.",
+          "How would my investment strategy have performed in the past?"
         ],
         "logo": "./assets/im-icon.svg",
         "composerIcon": "./assets/im-icon.svg"
@@ -96,7 +96,7 @@
         "demo_recording_url": "https://drive.google.com/file/d/1Xduul2FCpexz80pQoSOs2CQvfwdFJ14U/view"
       },
       "publication": {
-        "release_notes": "Initial ChatGPT and Codex directory submission for the Investminder remote MCP server.",
+        "release_notes": "Improved starter prompts to make Investminder more accessible to everyday investors, with easier access to guided onboarding, stock and ETF research, and strategy backtesting.",
         "translations": {
           "fr-FR": {
             "subtitle": "Analyse boursière et backtests",

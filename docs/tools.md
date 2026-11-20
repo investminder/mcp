@@ -4,6 +4,7 @@ The [Investminder](https://www.investminder.com) MCP server exposes the tools be
 
 Back to the [README](../README.md).
 
+- [Prompts](#prompts)
 - [Getting started](#getting-started)
 - [Market data](#market-data)
 - [Strategies](#strategies)
@@ -14,10 +15,16 @@ All tools that return text accept a `language` of `en`, `fr`, `es` or `de`. List
 
 ---
 
+## Prompts
+
+In addition to the tools below, the server exposes five guided MCP prompts (`onboarding`, `audit-portfolio`, `backtest-strategy`, `analyze-stock`, and `screen-market`) for clients that support MCP prompts. See the [MCP prompts](../README.md#mcp-prompts) section in the README for descriptions, optional arguments, and how to invoke them in Claude and Claude Code.
+
+---
+
 ## Getting started
 
 ### `startOnboarding`
-Guided introduction to Investminder: presents the product and walks a new user through the first steps, adapted to what they have already done. Optional, works before you have an Investminder profile.
+Guided introduction to Investminder: presents the product and walks a new user through the first steps, adapted to what they have already done. Optional, works before you have an Investminder profile. Also exposed as the `onboarding` MCP prompt.
 
 > *"What can Investminder do for me?"*
 

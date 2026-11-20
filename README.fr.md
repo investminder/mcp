@@ -37,6 +37,25 @@ npx skills add investminder/mcp
 
 ---
 
+## Prompts MCP
+
+Le serveur expose cinq prompts MCP guidés qui s'adaptent à votre compte (les étapes de données de marché fonctionnent sans profil Investminder, puis le prompt propose de créer un compte Basic gratuit lorsque le workflow en a besoin) :
+
+| Prompt | Rôle | Argument optionnel |
+|---|---|---|
+| `onboarding` | Introduction guidée : profil, quiz de 4 questions, stratégies pré-construites recommandées et premier pas (existe aussi comme outil `startOnboarding`). | Aucun |
+| `audit-portfolio` | Audit quantitatif d'un fichier Excel/CSV ou d'un portefeuille Investminder : corrélations, volatilité et drawdown sur 12 mois, ETF UCITS/PEA alternatifs et backtest de l'allocation. | Aucun |
+| `backtest-strategy` | Traduit une thèse ou une stratégie du catalogue (avec ses variantes UCITS/PEA) en stratégie, lance un backtest contre un benchmark et produit un pré-mortem. | `thesis` (idée de stratégie ou approche pré-construite de départ) |
+| `analyze-stock` | Diagnostic technique (moyennes mobiles, RSI, MACD, volatilité et drawdown 12 mois) et fondamental (états financiers, dividendes, historique du P/E avec un profil Investminder). | `ticker` (nom, ticker ou ISIN) |
+| `screen-market` | Screening d'actions et ETF américains et européens (filtres UCITS et PEA), via les presets Investminder ou des critères personnalisés. | Aucun |
+
+- **Claude** (web, desktop et mobile) : lancez un prompt depuis le menu des prompts / connecteurs.
+- **Claude Code** : lancez un prompt en commande slash au format `/mcp__investminder__<name>` (par exemple `/mcp__investminder__analyze-stock ASML.AS`).
+
+Les prompts MCP s'affichent uniquement dans les clients MCP qui les prennent en charge ; dans les autres clients, utilisez des requêtes en langage naturel (voir [docs/examples.md](docs/examples.md)). Un prompt lance un workflow guidé en un clic depuis le client, tandis que les [Agent Skills](#agent-skills) ci-dessous guident un assistant qui les a installés (`audit-portfolio` ↔ `excel-to-quant-audit`, `backtest-strategy` ↔ `quant-strategy-backtest`, `analyze-stock` ↔ `technical-regime-check` + `fundamental-quality-xray`, `screen-market` ↔ `securities-screener-workflow`).
+
+---
+
 ## Pourquoi dépasser vos fichiers Excel et CSV de suivi de portefeuille ?
 
 Un tableur Excel suit votre prix de revient (PRU) et affiche un camembert d'allocation, mais il ne sait pas mesurer la corrélation réelle entre vos lignes, simuler la perte maximale historique (drawdown) de votre portefeuille ni filtrer des ETF UCITS ou éligibles au PEA moins chargés en frais.

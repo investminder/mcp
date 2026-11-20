@@ -22,6 +22,7 @@ https://api.investminder.com/mcp
 
 - [What you can do](#what-you-can-do)
 - [Quick start](#quick-start)
+- [MCP prompts](#mcp-prompts)
 - [Agent Skills](#agent-skills)
 - [Example prompts](#example-prompts)
 - [Available tools](#available-tools)
@@ -47,7 +48,7 @@ https://api.investminder.com/mcp
 | **Backtest it** | "Backtest it from 2008 with $10,000 plus $300 a month, against SPY" | `startBacktest`, `listBacktests` |
 | **Track & link your portfolio** | "Create a GBP portfolio and record my 50 shares of ULVR.L at £45" | `createPortfolio`, `addPortfolioPosition`, `addPortfolioCash`, `linkPortfolioStrategy` |
 | **Sync your broker** | "Connect my brokerage account" | `listInstitutions`, `connectPortfolio` |
-| **Get started** | "What can Investminder do for me?" | `startOnboarding` |
+| **Get started** | "What can Investminder do for me?" | `startOnboarding`, prompt `onboarding` |
 
 Coverage includes stocks, ETFs and forex listed in the United States (Nasdaq) and on the London, Frankfurt, Paris, Amsterdam, Madrid and Zurich exchanges, with constituents of the S&P 500 🇺🇸, Nasdaq-100 🇺🇸, Russell 2000 🇺🇸, MSCI World 🌍, STOXX Europe 600 🇪🇺, Euro Stoxx 50 🇪🇺, CAC 40 🇫🇷, DAX 🇩🇪, FTSE 100 🇬🇧, IBEX 35 🇪🇸, AEX 🇳🇱, SMI 🇨🇭 and Nikkei 225 🇯🇵, and UCITS 🇪🇺 / PEA 🇫🇷 eligibility filters for European investors.
 
@@ -67,6 +68,25 @@ The server is a **remote MCP server** (Streamable HTTP). It is officially suppor
 Then sign in to Investminder and ask: *"What can Investminder do for me?"*
 
 Step-by-step setup and troubleshooting for each client: [docs/clients.md](docs/clients.md).
+
+---
+
+## MCP prompts
+
+The server exposes five guided MCP prompts that adapt to your account status (market-data steps work without an Investminder profile, and the prompt offers to create a free Basic profile when a workflow needs one):
+
+| Prompt | What it does | Optional argument |
+|---|---|---|
+| `onboarding` | Guided introduction: profile, 4-question quiz, recommended pre-built strategies, and first step (also available as the `startOnboarding` tool). | None |
+| `audit-portfolio` | Quantitative audit of an Excel/CSV file or an Investminder portfolio: correlations, 12-month volatility and drawdown, UCITS/PEA ETF alternatives, and allocation backtest. | None |
+| `backtest-strategy` | Turns a plain-English thesis or a catalog strategy (with official UCITS/PEA variants) into a strategy draft, runs a backtest against a benchmark, and delivers a pre-mortem. | `thesis` (starting strategy idea or pre-built approach) |
+| `analyze-stock` | Technical diagnostic (moving averages, RSI, MACD, 12-month volatility and drawdown) and fundamental review (financial statements, dividends, P/E history with an Investminder profile). | `ticker` (name, ticker symbol, or ISIN) |
+| `screen-market` | Screens US and European stocks and ETFs (including UCITS and PEA filters) using Investminder presets or custom criteria. | None |
+
+- **Claude** (web, desktop and mobile): launch any prompt from the prompts / connectors menu.
+- **Claude Code**: invoke prompts as slash commands using `/mcp__investminder__<name>` (for example, `/mcp__investminder__analyze-stock ASML.AS`).
+
+MCP prompts are available in MCP clients that support prompts; in other clients, use natural-language requests (see [Example prompts](#example-prompts) and [docs/examples.md](docs/examples.md)). Prompts launch a guided workflow in one click from the client, whereas the [Agent Skills](#agent-skills) below guide assistants that have installed them (`audit-portfolio` ↔ `excel-to-quant-audit`, `backtest-strategy` ↔ `quant-strategy-backtest`, `analyze-stock` ↔ `technical-regime-check` + `fundamental-quality-xray`, `screen-market` ↔ `securities-screener-workflow`).
 
 ---
 
@@ -165,7 +185,7 @@ This repository contains documentation, configuration examples, and Agent Skills
 
 Market data tools (search, screening, quotes, performance, technical indicators, correlation) work as soon as you sign in, even before you create your Investminder profile. Financial statement and dividend history depth, the strategy catalog, the number of strategies, backtests, portfolios and broker connections depend on your Investminder plan. When a limit applies, the assistant tells you.
 
-Compare the plans on **[investminder.com/pricing](https://www.investminder.com/pricing)**.
+Compare the plans on **[investminder.com/en/pricing](https://www.investminder.com/en/pricing)**.
 
 ---
 

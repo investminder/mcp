@@ -2,3 +2,5 @@
 .claude
 # Build
 dist/
+# Python
+__pycache__/

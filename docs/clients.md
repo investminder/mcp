@@ -2,7 +2,13 @@
 
 Server URL: `https://api.investminder.com/mcp` — Streamable HTTP, OAuth sign-in with your [Investminder](https://www.investminder.com) account.
 
-Investminder currently supports Claude, Claude Code and ChatGPT.
+Investminder officially supports Claude, Claude Code and ChatGPT, and works with MCP editors supporting remote Streamable HTTP + OAuth (such as Cursor and Cline).
+
+To also install the official quantitative Agent Skills bundled in this repository:
+
+```bash
+npx skills add investminder/mcp
+```
 
 Back to the [README](../README.md).
 
@@ -44,6 +50,37 @@ claude mcp add --transport http investminder https://api.investminder.com/mcp
 ```
 
 Run `/mcp` and choose **investminder → Authenticate**. Add `--scope user` to make it available in every project.
+
+## Cursor & Cline (Streamable HTTP + OAuth)
+
+Clients supporting remote Streamable HTTP MCP servers with OAuth can connect directly to `https://api.investminder.com/mcp` (no API key or local install required).
+
+**Cursor (`.cursor/mcp.json` or `~/.cursor/mcp.json`):**
+
+```json
+{
+  "mcpServers": {
+    "investminder": {
+      "url": "https://api.investminder.com/mcp"
+    }
+  }
+}
+```
+
+Open **Cursor Settings → Tools & MCP**, click **Connect** next to `investminder`, and complete OAuth sign-in in your browser.
+
+**Cline (`cline_mcp_settings.json`):**
+
+```json
+{
+  "mcpServers": {
+    "investminder": {
+      "type": "streamableHttp",
+      "url": "https://api.investminder.com/mcp"
+    }
+  }
+}
+```
 
 ## Troubleshooting
 

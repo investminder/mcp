@@ -4,3 +4,5 @@
 dist/
 # Python
 __pycache__/
+# Local agent tooling
+.agents/

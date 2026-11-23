@@ -70,7 +70,12 @@ Every response carries `earliestDate` and `latestDate`.
 Pearson correlation of daily returns between 2 and 20 tickers over a date range. Learn to read it: [Diversification & Correlation](https://help.investminder.com/en/investment-academy/diversification-correlation-1kcrnwe/).
 
 ### `listScreeners`
-Your saved screeners and their criteria, ready to be replayed with `screenSecurities`.
+Your saved screeners and the Investminder presets, with their criteria, ready to be replayed with `screenSecurities`.
+
+### `createScreener` / `updateScreener` / `deleteScreener`
+Save a screen built with `screenSecurities` as a screener of your own, with the same criteria format, and find it again in the Screener of the Investminder web app and in `listScreeners`. Columns and sort order are optional. `updateScreener` replaces the whole screener: name, criteria, columns and order. `deleteScreener` says whether something was deleted; the strategies that used the screener keep working without it. The number of saved screeners depends on your plan.
+
+> *"Save this screen as 'Quality tech', sorted by market cap."*
 
 ---
 

@@ -35,7 +35,7 @@ https://api.investminder.com/mcp
 |---|---|---|
 | **Find a stock or an ETF** | "Find the MSCI World UCITS ETFs and give me their fees" | `searchSecurities` |
 | **Analyze a security** | "Show me Apple's revenue, margins and dividends over 10 years" | `analyzeSecurities` |
-| **Screen the market** | "S&P 500 stocks with ROE above 20 % and a P/E under 15" | `screenSecurities`, `listScreeners` |
+| **Screen the market** | "S&P 500 stocks with ROE above 20 % and a P/E under 15" | `screenSecurities`, `listScreeners`, `createScreener` |
 | **Check diversification** | "How correlated are SPY, QQQ, GLD and TLT since 2015?" | `getCorrelationMatrix` |
 | **Start from a proven strategy** | "Show me passive, highly diversified ETF strategies" | `listPreBuiltStrategies` |
 | **Build your own strategy** | "Create a 60/40 ETF portfolio rebalanced every quarter" | `createStrategy`, `updateStrategy` |
@@ -91,7 +91,8 @@ More recipes, from first steps to advanced strategy design: [docs/examples.md](d
 | `screenSecurities` | Filter securities on fundamentals, valuation, momentum, index, country, UCITS 🇪🇺 / PEA 🇫🇷… | No |
 | `analyzeSecurities` | Quotes, performance, technical indicators, volume profile; financial statements, dividends and P/E history | Partly |
 | `getCorrelationMatrix` | Pearson correlation of daily returns for 2 to 20 tickers | No |
-| `listScreeners` | Your saved screeners | Yes |
+| `listScreeners` | Your saved screeners and the Investminder presets | No for the presets |
+| `createScreener` / `updateScreener` / `deleteScreener` | Save a screen as a screener of your own, edit it or delete it; it shows up in the web app's Screener | Yes |
 | `listPreBuiltStrategies` | Catalog of ready-made strategies, filterable by approach, diversification and activity | Yes |
 | `createStrategy` / `updateStrategy` / `deleteStrategy` | Build and edit rules-based strategies (rebalanced or progressive) | Yes |
 | `listUserStrategies` | Your strategies and their drafts | Yes |

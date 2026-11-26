@@ -186,8 +186,6 @@ This repository contains documentation, configuration examples, and Agent Skills
 
 Market data tools (search, screening, quotes, performance, technical indicators, correlation) work as soon as you sign in, even before you create your Investminder profile. Financial statement and dividend history depth, the strategy catalog, the number of strategies, backtests, portfolios and broker connections depend on your Investminder plan. When a limit applies, the assistant tells you.
 
-Compare the plans on **[investminder.com/en/pricing](https://www.investminder.com/en/pricing)**.
-
 ---
 
 ## FAQ

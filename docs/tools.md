@@ -4,6 +4,7 @@ The [Investminder](https://www.investminder.com) MCP server exposes the tools be
 
 Back to the [README](../README.md).
 
+- [Prompts](#prompts)
 - [Getting started](#getting-started)
 - [Market data](#market-data)
 - [Strategies](#strategies)
@@ -14,10 +15,16 @@ All tools that return text accept a `language` of `en`, `fr`, `es` or `de`. List
 
 ---
 
+## Prompts
+
+In addition to the tools below, the server exposes five guided MCP prompts (`onboarding`, `audit-portfolio`, `backtest-strategy`, `analyze-stock`, and `screen-market`) for clients that support MCP prompts. See the [MCP prompts](../README.md#mcp-prompts) section in the README for descriptions, optional arguments, and how to invoke them in Claude and Claude Code.
+
+---
+
 ## Getting started
 
 ### `startOnboarding`
-Guided introduction to Investminder: presents the product and walks a new user through the first steps, adapted to what they have already done. Optional, works before you have an Investminder profile.
+Guided introduction to Investminder: presents the product and walks a new user through the first steps, adapted to what they have already done. Optional, works before you have an Investminder profile. Also exposed as the `onboarding` MCP prompt.
 
 > *"What can Investminder do for me?"*
 
@@ -84,7 +91,7 @@ Save a screen built with `screenSecurities` as a screener of your own, with the 
 An Investminder strategy is a set of rules: which assets, in what weights, when to buy, when to sell, where to park cash, with what fees and against which benchmark. Learn the method: [How to build a Strategy](https://help.investminder.com/en/how-to-use/how-to-build-a-strategy-ez04de/).
 
 ### `listPreBuiltStrategies`
-The catalog of ready-made strategies available for your plan. Filter by `approach` (`TREND_FOLLOWING`, `BALANCED`, `DIVIDEND_FOCUSED`, `CORE_SATELLITE`, `MEAN_REVERSION`), `diversification`, `activity` (`PASSIVE_INVESTOR`, `ACTIVE_INVESTOR`). Read one strategy alone to get its full definition.
+The catalog of ready-made strategies available for your plan. Filter by `approach` (`TREND_FOLLOWING`, `BALANCED`, `DIVIDEND_FOCUSED`, `CORE_SATELLITE`, `MEAN_REVERSION`), `diversification`, `activity` (`PASSIVE_INVESTOR`, `ACTIVE_INVESTOR`). Read one strategy alone to get its full definition. Every pre-built strategy includes curated `variants` (UCITS systematically, and PEA where eligible) providing `currency`, ticker substitutions (`allocations`), and `cashManagement` so European investors can adapt them directly.
 
 ### `createStrategy`
 Creates a strategy in **DRAFT**. Two execution models:
@@ -100,7 +107,10 @@ To start from a pre-built strategy, read it and pass its definition back, adjust
 Replaces the draft definition (send the complete definition every time).
 
 ### `listUserStrategies`
-Your strategies, with their editable draft.
+Your strategies, with their editable draft and live version.
+
+### `publishStrategy`
+Promotes a strategy's `DRAFT` to the `LIVE` version (the one a portfolio follows and receives alerts for on paid plans).
 
 ### `deleteStrategy`
 Deletes a draft and its backtests; deletes the strategy if the draft was its only version.
@@ -139,6 +149,9 @@ All your portfolios, with positions and cash balances on request.
 
 ### `listPortfolioTransactions`
 Transaction history, newest first, filterable by type and date.
+
+### `linkPortfolioStrategy`
+Links an unlocked portfolio to a published (`LIVE`) strategy so Investminder tracks holdings against the strategy rules.
 
 ### `listInstitutions` / `connectPortfolio`
 List supported brokers and banks, then get a **hosted authorization link** to connect one. You authorize directly on the provider's own page; the portfolio is then created and synchronized automatically.

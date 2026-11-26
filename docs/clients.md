@@ -2,7 +2,13 @@
 
 Server URL: `https://api.investminder.com/mcp` — Streamable HTTP, OAuth sign-in with your [Investminder](https://www.investminder.com) account.
 
-Investminder currently supports Claude, Claude Code and ChatGPT.
+Investminder officially supports Claude, Claude Code and ChatGPT, and works with MCP editors supporting remote Streamable HTTP + OAuth (such as Cursor and Cline).
+
+To also install the official quantitative Agent Skills bundled in this repository:
+
+```bash
+npx skills add investminder/mcp
+```
 
 Back to the [README](../README.md).
 
@@ -16,7 +22,12 @@ You can also add it as a custom connector: **Settings → Connectors → Add cus
 
 Connectors added on claude.ai are available in Claude Desktop and the mobile apps too. On Team and Enterprise plans, an owner adds the connector for the organization, then each member connects their own Investminder account.
 
-The server also exposes an **onboarding** prompt: pick it from the prompts menu, or just say *"Start the Investminder onboarding"*.
+The server also exposes five guided MCP prompts in the prompts / connectors menu:
+- **`onboarding`** (*Get started with Investminder*) — also triggered by saying *"Start the Investminder onboarding"*.
+- **`audit-portfolio`** (*Audit a portfolio or spreadsheet*)
+- **`backtest-strategy`** (*Build and backtest a strategy*) — optional argument `thesis` (starting strategy idea or pre-built approach).
+- **`analyze-stock`** (*Analyze a stock or ETF*) — optional argument `ticker` (name, ticker, or ISIN).
+- **`screen-market`** (*Screen US & European markets*)
 
 ## ChatGPT
 
@@ -45,13 +56,46 @@ claude mcp add --transport http investminder https://api.investminder.com/mcp
 
 Run `/mcp` and choose **investminder → Authenticate**. Add `--scope user` to make it available in every project.
 
+Launch the server's MCP prompts as slash commands using `/mcp__investminder__<name>` — for example `/mcp__investminder__onboarding`, `/mcp__investminder__audit-portfolio`, `/mcp__investminder__screen-market`, or `/mcp__investminder__analyze-stock ASML.AS`.
+
+## Cursor & Cline (Streamable HTTP + OAuth)
+
+Clients supporting remote Streamable HTTP MCP servers with OAuth can connect directly to `https://api.investminder.com/mcp` (no API key or local install required).
+
+**Cursor (`.cursor/mcp.json` or `~/.cursor/mcp.json`):**
+
+```json
+{
+  "mcpServers": {
+    "investminder": {
+      "url": "https://api.investminder.com/mcp"
+    }
+  }
+}
+```
+
+Open **Cursor Settings → Tools & MCP**, click **Connect** next to `investminder`, and complete OAuth sign-in in your browser.
+
+**Cline (`cline_mcp_settings.json`):**
+
+```json
+{
+  "mcpServers": {
+    "investminder": {
+      "type": "streamableHttp",
+      "url": "https://api.investminder.com/mcp"
+    }
+  }
+}
+```
+
 ## Troubleshooting
 
 | Symptom | What to do |
 |---|---|
 | The sign-in window does not open | Allow pop-ups for your assistant, then reconnect the connector. |
 | "No account exists" | You are signed in, but your Investminder profile does not exist yet. Ask *"Start the Investminder onboarding"* and the assistant creates it. Market data tools work without it. |
-| A tool says your plan does not allow it | Some features depend on your plan. Compare the plans on [investminder.com/pricing](https://www.investminder.com/pricing). |
+| A tool says your plan does not allow it | Some features depend on your plan. Compare the plans on [investminder.com/en/pricing](https://www.investminder.com/en/pricing). |
 | A ticker is not found | Ask the assistant to search by name or ISIN first: tickers differ by exchange (e.g. `ASML` in New York, `ASML.AS` in Amsterdam). |
 | A backtest stays `PENDING` | Backtests run asynchronously. Ask the assistant to check again in a few seconds. |
 | Someone asks for my banking details | Never send banking information in a chat or to the Investminder team. Neither the assistant nor Investminder will ever ask for it: broker and bank connections are read-only and handled on the hosted page of our open banking partners, [Powens](https://www.powens.com) 🇪🇺 and [SnapTrade](https://snaptrade.com) 🇺🇸. |

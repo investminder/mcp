@@ -20,6 +20,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-This license covers the documentation and configuration examples in this
-repository. The Investminder service, its MCP server and its data are
-proprietary and subject to the Investminder terms of service.
+This license covers the Agent Skills, documentation, references, templates, and
+validation scripts in this repository. The Investminder service, its MCP server,
+and its market data are proprietary and subject to the Investminder terms of
+service (https://www.investminder.com/cgu).

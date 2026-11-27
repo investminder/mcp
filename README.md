@@ -230,6 +230,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) and [LICENSE](LICENSE) (MIT).
 - Getting started: [complete your onboarding](https://help.investminder.com/en/onboarding/how-to-complete-your-onboarding-and-get-your-first-strategy-recommendation-90expl/)
 - Strategy builder: [how to build a strategy](https://help.investminder.com/en/how-to-use/how-to-build-a-strategy-ez04de/)
 - Contact: email [support@investminder.com](mailto:support@investminder.com), or use the chat assistant once signed in to your Investminder account
+- Privacy policy: [investminder.com/en/privacy-policy](https://www.investminder.com/en/privacy-policy)
+- Terms of use: [investminder.com/en/cgu](https://www.investminder.com/en/cgu) · Legal notice: [investminder.com/en/legal-notice](https://www.investminder.com/en/legal-notice)
 
 ---
 

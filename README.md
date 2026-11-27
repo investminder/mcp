@@ -176,6 +176,7 @@ Full reference with parameters and tips: [docs/tools.md](docs/tools.md).
 - **Broker and bank access is read-only.** Investminder can read your positions, cash and transactions to keep your portfolios up to date. It cannot move money or place orders.
 - **Never send banking information in a chat, and never send it to the Investminder team** (password, code, card number, IBAN…). Neither the assistant nor anyone at Investminder will ever ask you for it.
 - Every tool is scoped to the signed-in account: an assistant can only read and change your own strategies and portfolios.
+- How Investminder collects, uses, shares and retains your data is described in its [privacy policy](https://www.investminder.com/en/privacy-policy).
 - **Investminder never places orders.** It helps you decide; your broker executes. See [the place of Investminder in your financial ecosystem](https://help.investminder.com/en/how-to-use/the-place-of-investminder-in-your-financial-ecosystem-1wm3ccl/) and [SECURITY.md](SECURITY.md).
 
 This repository contains documentation, configuration examples, and Agent Skills only. The server itself is closed source and operated by Investminder.
@@ -230,6 +231,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) and [LICENSE](LICENSE) (MIT).
 - Getting started: [complete your onboarding](https://help.investminder.com/en/onboarding/how-to-complete-your-onboarding-and-get-your-first-strategy-recommendation-90expl/)
 - Strategy builder: [how to build a strategy](https://help.investminder.com/en/how-to-use/how-to-build-a-strategy-ez04de/)
 - Contact: email [support@investminder.com](mailto:support@investminder.com), or use the chat assistant once signed in to your Investminder account
+- Privacy policy: [investminder.com/en/privacy-policy](https://www.investminder.com/en/privacy-policy)
+- Terms of use: [investminder.com/en/cgu](https://www.investminder.com/en/cgu) · Legal notice: [investminder.com/en/legal-notice](https://www.investminder.com/en/legal-notice)
 
 ---
 

@@ -96,6 +96,7 @@ Essayez l'audit sur le portefeuille d'exemple fourni ([`skills/excel-to-quant-au
 
 - **Places boursières couvertes :** États-Unis (Nasdaq/NYSE), Paris, Francfort, Amsterdam, Londres, Madrid et Zurich, avec éligibilité **UCITS** et **PEA** pour les investisseurs européens.
 - **Sécurité bancaire :** ne saisissez jamais vos identifiants bancaires, mots de passe, codes 2FA ou IBAN dans un chat. Les connexions courtiers sont en lecture seule via les pages hébergées de partenaires agréés (**Powens** 🇪🇺 et **SnapTrade** 🇺🇸).
+- **Données personnelles :** collecte, usage, partage et conservation des données sont décrits dans la [politique de confidentialité](https://www.investminder.com/fr/privacy-policy) ; voir aussi les [CGU](https://www.investminder.com/fr/cgu) et les [mentions légales](https://www.investminder.com/fr/legal-notice).
 - **Aide à la décision uniquement :** aucun conseil d'achat/vente, aucun objectif de cours, aucun passage d'ordre. Consultez [docs/compliance-guardrails.md](docs/compliance-guardrails.md) et [SECURITY.md](SECURITY.md).
 
 ---
